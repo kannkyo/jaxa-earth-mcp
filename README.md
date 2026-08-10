@@ -59,8 +59,12 @@ jaxa-earth-mcp --transport sse --port 8000
 }
 ```
 
-### Claude Desktop 設定
-`claude_desktop_config.json` に追加:
+### Claude Code / Plugin でのインストール
+リポジトリを指定してプラグインとして追加可能です:
+```bash
+claude plugin add kannkyo/jaxa-earth-mcp
+```
+または `claude_desktop_config.json` に MCP サーバーとして追加:
 ```json
 {
   "mcpServers": {

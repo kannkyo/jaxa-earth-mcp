@@ -24,8 +24,13 @@ uv pip install jaxa-earth-mcp
 }
 ```
 
-### 3. Claude Desktop 設定
-`%APPDATA%\Claude\claude_desktop_config.json` (Windows) または `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) に追加します:
+### 3. Claude Code / Plugin インストール
+Claude Code のプラグインコマンドで直接インストール可能です:
+```bash
+claude plugin add kannkyo/jaxa-earth-mcp
+```
+
+また、Claude Desktop の場合 `%APPDATA%\Claude\claude_desktop_config.json` (Windows) または `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) に追加します:
 ```json
 {
   "mcpServers": {

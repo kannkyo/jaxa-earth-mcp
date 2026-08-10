@@ -1,0 +1,20 @@
+{
+  "name": "jaxa-earth-mcp",
+  "version": "0.1.0",
+  "description": "JAXA Earth Python API (jaxa.earth.je v0.1.6) MCP サーバーおよび衛星データ解析用スキルプラグイン",
+  "author": "JAXA Earth MCP Community",
+  "homepage": "https://github.com/kannkyo/jaxa-earth-mcp",
+  "mcpServers": {
+    "jaxa-earth": {
+      "command": "uvx",
+      "args": ["jaxa-earth-mcp"]
+    }
+  },
+  "skills": [
+    {
+      "name": "jaxa-earth",
+      "path": "skills/jaxa-earth/SKILL.md",
+      "description": "JAXA 衛星観測データ (AW3D30, GSMaP, GCOM-C, ALOS-2) の検索および解析スキル"
+    }
+  ]
+}
