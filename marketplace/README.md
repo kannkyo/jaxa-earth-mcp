@@ -1,18 +1,18 @@
-# JAXA Earth MCP & Skill Marketplace Catalog
+# JAXA Earth MCP & スキル マーケットプレイス カタログ
 
-This repository contains the Model Context Protocol (MCP) server, Claude/OpenCode Agent Skill, and PyPI package for accessing JAXA (Japan Aerospace Exploration Agency) Earth observation data.
+本リポジトリには、JAXA (宇宙航空研究開発機構) の地球観測データを扱うための MCP (Model Context Protocol) サーバー、Claude/OpenCode Agent スキル、および PyPI パッケージが含まれています。
 
-## 🚀 Marketplace Installation
+## 🚀 インストール手順
 
-### 1. PyPI Installation
+### 1. PyPI からのインストール
 ```bash
 pip install jaxa-earth-mcp
-# or with uv
+# または uv を使用
 uv pip install jaxa-earth-mcp
 ```
 
-### 2. OpenCode Integration
-Add to your `opencode.json` or `.opencode/plugins.json`:
+### 2. OpenCode への組み込み
+`opencode.json` または `.opencode/plugins.json` に以下を追加します:
 ```json
 {
   "mcpServers": {
@@ -24,18 +24,20 @@ Add to your `opencode.json` or `.opencode/plugins.json`:
 }
 ```
 
-### 3. Claude Desktop Configuration
-Add to `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+### 3. Claude Desktop 設定
+`%APPDATA%\Claude\claude_desktop_config.json` (Windows) または `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) に追加します:
 ```json
 {
   "mcpServers": {
     "jaxa-earth": {
       "command": "uvx",
-      "args": ["jaxa-earth-mcp"]
+      "args": [
+        "jaxa-earth-mcp"
+      ]
     }
   }
 }
 ```
 
-### 4. Agent Skill Usage
-Copy `skills/jaxa-earth/SKILL.md` to your agent skill directory (e.g. `.claude/skills/jaxa-earth/SKILL.md` or `.agents/skills/jaxa-earth/SKILL.md`).
+### 4. Agent スキルの利用
+`skills/jaxa-earth/SKILL.md` をお使いのエージェントスキルディレクトリ（例: `.claude/skills/jaxa-earth/SKILL.md` や `.agents/skills/jaxa-earth/SKILL.md`）にコピーします。

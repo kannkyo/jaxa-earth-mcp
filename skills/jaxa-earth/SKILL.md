@@ -22,7 +22,7 @@ description: JAXA Earth Python API (jaxa.earth.je v0.1.6) を使用した衛星�
 
 ## 2. 厳密なメソッド呼び出し順序 (Method Chaining Rule)
 
-`ImageCollection` を使用する際は、以下の順番を守ってメソッドをチェイン接続する必要があります。順序が異なるとエラーになる場合があります。
+`ImageCollection` を使用する際は、以下の順番を守ってメソッドをチェイン接続する必要があります。順序が異なるとエラーが発生します。
 
 ```
 ImageCollection(collection_id)
@@ -72,7 +72,7 @@ from jaxa.earth import je
 keywords = ["LST", "_half-month"]
 collections, bands = je.ImageCollectionList(ssl_verify=False).filter_name(keywords=keywords)
 for c, b in zip(collections, bands):
-    print(f"Collection: {c}, Band: {b}")
+    print(f"コレクション名: {c}, バンド名: {b}")
 ```
 
 ### C. 画像の差分計算とマスキング

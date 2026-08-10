@@ -1,53 +1,53 @@
 # jaxa-earth-mcp 🌍📡
 
-MCP (Model Context Protocol) Server, Agent SKILL, and PyPI package wrapping the official [JAXA Earth Python API](https://data.earth.jaxa.jp/api/python/v0.1.6/docs.md) (`jaxa.earth.je` v0.1.6).
+[JAXA Earth Python API](https://data.earth.jaxa.jp/api/python/v0.1.6/docs.md) (`jaxa.earth.je` v0.1.6) をラップした MCP (Model Context Protocol) サーバー、Agent スキル、および PyPI 配布用パッケージです。
 
 ---
 
-## 🌟 Features
+## 🌟 主な機能
 
-- **MCP Tools**:
-  - `list_collections`: Search & filter available satellite datasets (AW3D30, GSMaP, GCOM-C, ALOS-2, etc.).
-  - `get_api_documentation`: Access structured API reference & code samples (`docs.md` v0.1.6).
-  - `generate_jaxa_python_script`: Auto-generate valid Python code with correct method chaining order.
-- **Agent Skill**: High-quality Agent Skill definition (`skills/jaxa-earth/SKILL.md`) for OpenCode, Claude Code, and autonomous AI agents.
-- **Marketplace Manifests**: Ready for OpenCode Marketplace, Claude Desktop, and Smithery AI.
-- **PyPI Package**: Packaged for distribution via PyPI (`pip install jaxa-earth-mcp`).
+- **MCP ツール**:
+  - `list_collections`: 利用可能な衛星データセット（AW3D30, GSMaP, GCOM-C, ALOS-2 等）の検索およびフィルタリング。
+  - `get_api_documentation`: API リファレンスとコード例 (`docs.md` v0.1.6) の提供。
+  - `generate_jaxa_python_script`: 正しいメソッド呼び出し順序に準拠した Python スクリプトの自動生成。
+- **Agent スキル (SKILL)**: OpenCode、Claude Code、各種 AI エージェント向けに最適化された専用スキル (`skills/jaxa-earth/SKILL.md`)。
+- **マーケットプレイス対応**: OpenCode プラグイン/スキル、Claude Desktop、Smithery AI 等の設定ファイルを同梱。
+- **PyPI パッケージ化**: `pip install jaxa-earth-mcp` で即座に導入可能。
 
 ---
 
-## 📦 Installation
+## 📦 インストール方法
 
 ```bash
-# Via pip
+# pip を使用する場合
 pip install jaxa-earth-mcp jaxa-earth
 
-# Via uv
+# uv を使用する場合
 uv pip install jaxa-earth-mcp jaxa-earth
 ```
 
 ---
 
-## ⚙️ Quick Start
+## ⚙️ クイックスタート
 
-### Run MCP Server (stdio mode)
+### MCP サーバーの起動 (stdio モード)
 ```bash
 jaxa-earth-mcp
-# or with uvx
+# または uvx 経由
 uvx jaxa-earth-mcp
 ```
 
-### Run MCP Server (SSE mode)
+### MCP サーバーの起動 (SSE モード)
 ```bash
 jaxa-earth-mcp --transport sse --port 8000
 ```
 
 ---
 
-## 🔧 Client Setup
+## 🔧 クライアント設定
 
-### OpenCode Setup
-Add to your config:
+### OpenCode 設定
+`opencode.json` または `.opencode/plugins.json` に追加:
 ```json
 {
   "mcpServers": {
@@ -59,8 +59,8 @@ Add to your config:
 }
 ```
 
-### Claude Desktop Setup
-Add to `claude_desktop_config.json`:
+### Claude Desktop 設定
+`claude_desktop_config.json` に追加:
 ```json
 {
   "mcpServers": {
@@ -74,26 +74,26 @@ Add to `claude_desktop_config.json`:
 
 ---
 
-## 🎓 Agent Skill Integration
+## 🎓 エージェントスキルの組み込み
 
-Copy `skills/jaxa-earth/SKILL.md` to your environment:
+`skills/jaxa-earth/SKILL.md` を各自の環境にコピーして使用します:
 - **Claude Code**: `.claude/skills/jaxa-earth/SKILL.md`
 - **OpenCode / Agent**: `.agents/skills/jaxa-earth/SKILL.md`
 
 ---
 
-## 🚀 Building & PyPI Publishing
+## 🚀 ビルドおよび PyPI への公開手順
 
 ```bash
-# Build wheel and sdist
+# パッケージのビルド (.whl および .tar.gz)
 python -m build
 
-# Upload to PyPI
+# PyPI へアップロード
 python -m twine upload dist/*
 ```
 
 ---
 
-## 📜 License
+## 📜 ライセンス
 
 MIT License
