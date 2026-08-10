@@ -1,6 +1,6 @@
-"""Tests for jaxa_earth_mcp.docs_reference module."""
+"""JAXA Earth MCP docs_reference モジュールのテスト。"""
 
-from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6  # noqa
+from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6
 from jaxa_earth_mcp.docs_reference import get_reference_doc
 
 
@@ -12,17 +12,17 @@ def test_docs_structure():
 
 def test_get_reference_doc_all():
     doc = get_reference_doc("all")
-    assert "JAXA Earth Python API Documentation" in doc
+    assert "JAXA Earth Python API ドキュメント" in doc
     assert "FeatureCollection" in doc
     assert "ImageCollection" in doc
 
 
 def test_get_reference_doc_single_class():
     doc = get_reference_doc("FeatureCollection")
-    assert "Class: `jaxa.earth.je.FeatureCollection`" in doc
+    assert "クラス: `jaxa.earth.je.FeatureCollection`" in doc
     assert "read(path: str)" in doc
 
 
 def test_get_reference_doc_unknown_class():
     doc = get_reference_doc("UnknownClass")
-    assert "Unknown class" in doc
+    assert "不明なクラス名" in doc

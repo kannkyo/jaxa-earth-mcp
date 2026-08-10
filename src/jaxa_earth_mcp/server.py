@@ -1,4 +1,4 @@
-"""MCP Server for JAXA Earth Python API (jaxa.earth.je)."""
+"""JAXA Earth Python API (jaxa.earth.je) 用 MCP サーバー。"""
 
 import json
 from typing import List, Optional
@@ -8,29 +8,29 @@ try:
 except ImportError:
     from mcp.server.fastmcp import FastMCP
 
-from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6  # noqa
+from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6
 from jaxa_earth_mcp.docs_reference import get_reference_doc
 
-# Initialize FastMCP Server
+# FastMCP サーバーの初期化
 mcp = FastMCP("jaxa-earth-mcp")
 
 
 @mcp.tool()
 def get_api_documentation(class_name: str = "all") -> str:
-    """Retrieve official documentation and code examples for JAXA Earth Python API (jaxa.earth.je v0.1.6).
+    """JAXA Earth Python API (jaxa.earth.je v0.1.6) の公式ドキュメントおよびコード例を取得します。
 
     Args:
-        class_name: Name of the class to get documentation for ('FeatureCollection', 'ImageCollectionList', 'ImageCollection', 'ImageProcess', or 'all').
+        class_name: ドキュメントを取得するクラス名 ('FeatureCollection', 'ImageCollectionList', 'ImageCollection', 'ImageProcess', または 'all')。
     """
     return get_reference_doc(class_name)
 
 
 @mcp.tool()
 def list_collections(keywords: Optional[List[str]] = None) -> str:
-    """List or filter popular and available satellite datasets on JAXA Earth Platform.
+    """JAXA Earth プラットフォームで利用可能な衛星データセットの一覧取得およびフィルタリングを行います。
 
     Args:
-        keywords: Optional list of keyword strings to filter collections (e.g. ['ALOS', 'LST', 'PRISM']).
+        keywords: コレクションをフィルタリングするためのキーワードリスト（例: ['ALOS', 'LST', 'PRISM']）。
     """
     try:
         from jaxa.earth import je
@@ -42,7 +42,7 @@ def list_collections(keywords: Optional[List[str]] = None) -> str:
         }
         return json.dumps(res, indent=2, ensure_ascii=False)
     except Exception as e:
-        # Fallback to internal curated list if live call fails or jaxa.earth not installed  # noqa
+        # ライブAPI呼出失敗または jaxa.earth 未インストール時のフォールバック処理
         popular = JAXA_EARTH_DOCS_V0_1_6["popular_collections"]
         if keywords:
             filtered = [
@@ -70,26 +70,26 @@ def generate_jaxa_python_script(
     select_band: str = "DSM",
     calc_stats: bool = True
 ) -> str:
-    """Generate verified, executable Python script using jaxa.earth.je API to fetch and process satellite data.
+    """jaxa.earth.je APIを使用して衛星データを取得・処理する実行可能なPythonスクリプトを自動生成します。
 
     Args:
-        collection: JAXA Earth collection ID.
-        start_date: ISO 8601 start date (YYYY-MM-DDTHH:MM:SS).
-        end_date: ISO 8601 end date (YYYY-MM-DDTHH:MM:SS).
-        resolution: Spatial resolution filter in meters.
-        geojson_path: File path to GeoJSON boundary file.
-        select_band: Target band name (e.g. 'DSM', 'LST', 'HH').
-        calc_stats: Whether to calculate spatial statistics in the script.
+        collection: JAXA Earth コレクションID。
+        start_date: ISO 8601 形式の開始日時 (YYYY-MM-DDTHH:MM:SS)。
+        end_date: ISO 8601 形式の終了日時 (YYYY-MM-DDTHH:MM:SS)。
+        resolution: 空間解像度フィルタ（メートル単位）。
+        geojson_path: 領域指定用 GeoJSON ファイルパス。
+        select_band: 対象バンド名（例: 'DSM', 'LST', 'HH'）。
+        calc_stats: 空間統計量を計算するコードを含めるかどうか。
     """
-    script = f'''# Generated JAXA Earth Python API Script (jaxa.earth.je v0.1.6)
+    script = f'''# 自動生成された JAXA Earth Python API スクリプト (jaxa.earth.je v0.1.6)
 from jaxa.earth import je
 
-# 1. Load spatial boundary from GeoJSON
+# 1. GeoJSON から領域境界の読み込み
 geoj_path = "{geojson_path}"
 geoj = je.FeatureCollection().read(geoj_path).select([])
 
-# 2. Query & fetch raster image collection
-# Note method call chain order requirement: filter_date -> filter_resolution -> filter_bounds -> select -> get_images
+# 2. 衛星ラスタ画像コレクションの検索・取得
+# メソッド呼び出し順序の規約: filter_date -> filter_resolution -> filter_bounds -> select -> get_images
 data_out = (
     je.ImageCollection("{collection}")
     .filter_date(["{start_date}", "{end_date}"])
@@ -99,12 +99,12 @@ data_out = (
     .get_images()
 )
 
-# 3. Process and display raster images
+# 3. ラスタ画像の表示と処理
 img_proc = je.ImageProcess(data_out).show_images()
 '''
     if calc_stats:
         script += '''
-# 4. Calculate spatial statistics (mean, std, min, max, etc.)
+# 4. 空間統計量（平均、標準偏差、最小値、最大値など）の計算
 img_proc = img_proc.calc_spatial_stats().show_spatial_stats()
 '''
     return script
@@ -112,32 +112,32 @@ img_proc = img_proc.calc_spatial_stats().show_spatial_stats()
 
 @mcp.resource("jaxa://docs/api")
 def api_docs_resource() -> str:
-    """Resource providing full JAXA Earth Python API v0.1.6 reference."""
+    """JAXA Earth Python API v0.1.6 完全リファレンスを提供するリソース。"""
     return get_reference_doc("all")
 
 
 @mcp.resource("jaxa://collections/popular")
 def popular_collections_resource() -> str:
-    """Resource listing popular JAXA satellite datasets."""
-    return json.dumps(JAXA_EARTH_DOCS_V0_1_6["popular_collections"], indent=2)
+    """主要な JAXA 衛星データセット一覧を提供するリソース。"""
+    return json.dumps(JAXA_EARTH_DOCS_V0_1_6["popular_collections"], indent=2, ensure_ascii=False)  # noqa
 
 
 @mcp.prompt()
 def satellite_data_analysis(query: str) -> str:
-    """Create prompt instructions for JAXA satellite data analysis."""
-    return f"""You are an expert Earth Observation data scientist using the JAXA Earth Python API (`jaxa.earth.je`).
-User request: "{query}"
+    """JAXA 衛星データ解析用プロンプトテンプレートを作成します。"""
+    return f"""あなたは JAXA Earth Python API (`jaxa.earth.je`) を習熟したデータサイエンティストです。
+ユーザーのリクエスト: "{query}"
 
-Please provide a complete Python solution following the JAXA Earth API (v0.1.6) conventions:
-1. Use `jaxa.earth.je` module.
-2. Maintain strict method call ordering for ImageCollection:
+JAXA Earth API (v0.1.6) の規約に従った完全な Python ソリューションを提供してください:
+1. `jaxa.earth.je` モジュールを使用する。
+2. ImageCollection の厳密なメソッド呼び出し順序を守る:
    `ImageCollection(col).filter_date(...).filter_resolution(...).filter_bounds(...).select(...).get_images()`
-3. Process raster outputs using `ImageProcess`.
+3. 出力されたラスタデータを `ImageProcess` で可視化・処理する。
 """
 
 
 def run_server():
-    """Run the FastMCP server."""
+    """FastMCP サーバーを実行します。"""
     mcp.run()
 
 

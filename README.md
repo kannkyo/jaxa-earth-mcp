@@ -16,6 +16,26 @@
 
 ---
 
+## 🗺️ JAXA API リファレンスと MCP 機能の対応表
+
+### 1. MCP メソッド（ツール & プロンプト）対応表
+
+| JAXA Earth API (`jaxa.earth.je` v0.1.6) | MCP メソッド名 | 種別 | 内容・役割 |
+|---|---|---|---|
+| API 公式仕様書 (`docs.md`) | `get_api_documentation` | Tool | 指定クラス (`FeatureCollection`, `ImageCollection` 等) または全体の公式ドキュメント・コード例を取得 |
+| `ImageCollectionList.filter_name()` | `list_collections` | Tool | JAXA プラットフォーム上の衛星データセットおよびバンドの検索・一覧取得 |
+| `ImageCollection` + `ImageProcess` 一連のチェイン処理 | `generate_jaxa_python_script` | Tool | 正しい呼び出し順序 (`filter_date` ➔ `filter_resolution` ➔ `filter_bounds` ➔ `select` ➔ `get_images`) に準拠したスクリプト自動生成 |
+| API 活用プロンプト | `satellite_data_analysis` | Prompt | 衛星観測データ解析タスク用プロンプトテンプレート |
+
+### 2. MCP リソース対応表
+
+| JAXA Earth API (`jaxa.earth.je` v0.1.6) | MCP リソース URI | 内容・役割 |
+|---|---|---|
+| API 公式仕様書 (`docs.md`) | `jaxa://docs/api` | JAXA Earth API 全体の公式リファレンスドキュメントリソース |
+| 登録済み主要コレクションカタログ | `jaxa://collections/popular` | AW3D30, GSMaP, GCOM-C, ALOS-2 等の主要衛星データセット一覧リソース |
+
+---
+
 ## 📦 インストール方法
 
 ```bash
