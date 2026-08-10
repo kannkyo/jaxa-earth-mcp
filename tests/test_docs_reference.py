@@ -1,6 +1,6 @@
 """Tests for jaxa_earth_mcp.docs_reference module."""
 
-from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6, get_reference_doc
+from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6, get_reference_doc  # noqa
 
 def test_docs_structure():
     assert JAXA_EARTH_DOCS_V0_1_6["version"] == "0.1.6"

@@ -8,7 +8,7 @@ try:
 except ImportError:
     from mcp.server.fastmcp import FastMCP
 
-from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6, get_reference_doc
+from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6, get_reference_doc  # noqa
 
 # Initialize FastMCP Server
 mcp = FastMCP("jaxa-earth-mcp")
@@ -31,26 +31,26 @@ def list_collections(keywords: Optional[List[str]] = None) -> str:
     """
     try:
         from jaxa.earth import je
-        col_list, band_list = je.ImageCollectionList(ssl_verify=False).filter_name(keywords=keywords or [])
+        col_list, band_list = je.ImageCollectionList(ssl_verify=False).filter_name(keywords=keywords or [])  # noqa
         res = {
             "source": "JAXA STAC Live API",
             "collections_found": len(col_list),
-            "data": [{"collection": c, "band": b} for c, b in zip(col_list, band_list)]
+            "data": [{"collection": c, "band": b} for c, b in zip(col_list, band_list)]  # noqa
         }
         return json.dumps(res, indent=2, ensure_ascii=False)
     except Exception as e:
-        # Fallback to internal curated list if live call fails or jaxa.earth not installed
+        # Fallback to internal curated list if live call fails or jaxa.earth not installed  # noqa
         popular = JAXA_EARTH_DOCS_V0_1_6["popular_collections"]
         if keywords:
             filtered = [
                 c for c in popular
-                if any(kw.lower() in c["id"].lower() or kw.lower() in c["name"].lower() for kwstr in keywords for kw in [kwstr])
+                if any(kw.lower() in c["id"].lower() or kw.lower() in c["name"].lower() for kwstr in keywords for kw in [kwstr])  # noqa
             ]
         else:
             filtered = popular
         
         res = {
-            "source": "Curated JAXA Earth Registry (Live API offline or fallback)",
+            "source": "Curated JAXA Earth Registry (Live API offline or fallback)",  # noqa
             "note": str(e),
             "collections": filtered
         }

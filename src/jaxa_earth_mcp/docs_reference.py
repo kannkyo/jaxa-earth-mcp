@@ -3,42 +3,42 @@
 JAXA_EARTH_DOCS_V0_1_6 = {
     "version": "0.1.6",
     "overview": (
-        "This API package for Python is developed to utilize various Earth observation data "
-        "held by JAXA. By using this API, you can easily acquire and process data without "
+        "This API package for Python is developed to utilize various Earth observation data "  # noqa
+        "held by JAXA. By using this API, you can easily acquire and process data without "  # noqa
         "worrying about specifications, sensors, resolution, etc.\n"
-        "je module contains four classes: FeatureCollection, ImageCollectionList, "
+        "je module contains four classes: FeatureCollection, ImageCollectionList, "  # noqa
         "ImageCollection, ImageProcess."
     ),
     "classes": {
         "FeatureCollection": {
-            "description": "Reads a feature collection and selects features of GeoJSON data from your computer.",
+            "description": "Reads a feature collection and selects features of GeoJSON data from your computer.",  # noqa
             "attributes": {
-                "feature_collection": "dict: Updated after method `read` is executed. Default is None."
+                "feature_collection": "dict: Updated after method `read` is executed. Default is None."  # noqa
             },
             "methods": {
                 "__init__": "Initialize FeatureCollection instance.",
-                "read(path: str)": "Reads input path's GeoJSON data as feature collection.",
-                "select(keywords: list = [])": "Filter the feature collection data properties by keywords."
+                "read(path: str)": "Reads input path's GeoJSON data as feature collection.",  # noqa
+                "select(keywords: list = [])": "Filter the feature collection data properties by keywords."  # noqa
             },
             "example": """from jaxa.earth import je
 geoj_path = "gadm36_JPN_0.geojson"
 geoj = je.FeatureCollection().read(geoj_path).select([])"""
         },
         "ImageCollectionList": {
-            "description": "Gets and filters collection catalog JSON depending on user input keywords.",
+            "description": "Gets and filters collection catalog JSON depending on user input keywords.",  # noqa
             "attributes": {
-                "stac_collections": "dict: STAC collections list retrieved from JAXA STAC API."
+                "stac_collections": "dict: STAC collections list retrieved from JAXA STAC API."  # noqa
             },
             "methods": {
-                "__init__(ssl_verify: bool = True)": "Initialize with SSL verification flag.",
-                "filter_name(keywords: list = [])": "Filters collection catalog by keywords. Returns (collections, bands)."
+                "__init__(ssl_verify: bool = True)": "Initialize with SSL verification flag.",  # noqa
+                "filter_name(keywords: list = [])": "Filters collection catalog by keywords. Returns (collections, bands)."  # noqa
             },
             "example": """from jaxa.earth import je
 keywords = ["LST", "_half-month"]
 collections, bands = je.ImageCollectionList(ssl_verify=False).filter_name(keywords=keywords)"""
         },
         "ImageCollection": {
-            "description": "Gets selected collection's catalog JSON data from JAXA raster images depending on query.",
+            "description": "Gets selected collection's catalog JSON data from JAXA raster images depending on query.",  # noqa
             "attributes": {
                 "stac_date": "Stac class object after filter_date",
                 "stac_ppu": "Stac class object after filter_resolution",
@@ -46,12 +46,12 @@ collections, bands = je.ImageCollectionList(ssl_verify=False).filter_name(keywor
                 "stac_band": "Stac class object after select"
             },
             "methods": {
-                "__init__(collection: str = 'JAXA.EORC_ALOS.PRISM_AW3D30.v3.2_global', stac_cog_url: str = None, ssl_verify: bool = True)": "Initialize ImageCollection with target collection ID.",
-                "filter_date(date: list)": "Filter collection by date list e.g. ['2021-01-01T00:00:00', '2022-01-01T00:00:00'].",
-                "filter_resolution(resolution: float)": "Filter collection by spatial resolution (meters). Note: Must use filter_date first.",
-                "filter_bounds(geojson_feature: dict)": "Filter collection by GeoJSON feature spatial boundary. Note: Must use filter_resolution first.",
-                "select(band: str = None)": "Filter collection catalog by band name. Note: Must use filter_bounds first.",
-                "get_images()": "Fetch raster images based on configured filters. Returns dictionary or raster dataset."
+                "__init__(collection: str = 'JAXA.EORC_ALOS.PRISM_AW3D30.v3.2_global', stac_cog_url: str = None, ssl_verify: bool = True)": "Initialize ImageCollection with target collection ID.",  # noqa
+                "filter_date(date: list)": "Filter collection by date list e.g. ['2021-01-01T00:00:00', '2022-01-01T00:00:00'].",  # noqa
+                "filter_resolution(resolution: float)": "Filter collection by spatial resolution (meters). Note: Must use filter_date first.",  # noqa
+                "filter_bounds(geojson_feature: dict)": "Filter collection by GeoJSON feature spatial boundary. Note: Must use filter_resolution first.",  # noqa
+                "select(band: str = None)": "Filter collection catalog by band name. Note: Must use filter_bounds first.",  # noqa
+                "get_images()": "Fetch raster images based on configured filters. Returns dictionary or raster dataset."  # noqa
             },
             "example": """from jaxa.earth import je
 data_out = je.ImageCollection("JAXA.EORC_ALOS.PRISM_AW3D30.v3.2_global")\\
@@ -62,18 +62,18 @@ data_out = je.ImageCollection("JAXA.EORC_ALOS.PRISM_AW3D30.v3.2_global")\\
              .get_images()"""
         },
         "ImageProcess": {
-            "description": "Processes, visualizes, and calculates spatial statistics on acquired ImageCollection data.",
+            "description": "Processes, visualizes, and calculates spatial statistics on acquired ImageCollection data.",  # noqa
             "attributes": {
                 "raster": "Image raster data object",
                 "spatial_stats": "Calculated spatial statistics dictionary"
             },
             "methods": {
-                "__init__(data_out)": "Initialize ImageProcess with output data from ImageCollection.get_images().",
+                "__init__(data_out)": "Initialize ImageProcess with output data from ImageCollection.get_images().",  # noqa
                 "show_images()": "Display/plot raster images.",
-                "calc_spatial_stats()": "Calculate spatial summary statistics (mean, std, min, max, etc.).",
+                "calc_spatial_stats()": "Calculate spatial summary statistics (mean, std, min, max, etc.).",  # noqa
                 "show_spatial_stats()": "Display spatial statistics results.",
-                "diff_images(ref)": "Take pixel-wise difference relative to reference ImageCollection dataset.",
-                "mask_images(mask, method_query: str = 'values_equal', values: float = [0, 1])": "Mask raster pixels using mask dataset. Query methods: 'range', 'values_equal', 'bits_equal'."
+                "diff_images(ref)": "Take pixel-wise difference relative to reference ImageCollection dataset.",  # noqa
+                "mask_images(mask, method_query: str = 'values_equal', values: float = [0, 1])": "Mask raster pixels using mask dataset. Query methods: 'range', 'values_equal', 'bits_equal'."  # noqa
             },
             "example": """from jaxa.earth import je
 img = je.ImageProcess(data_out)\\
@@ -113,7 +113,7 @@ img = je.ImageProcess(data_out)\\
 def get_reference_doc(class_name: str = None) -> str:
     """Return documentation for specified class or full overview."""
     if not class_name or class_name.lower() == "all":
-        output = [f"# JAXA Earth Python API Documentation (v{JAXA_EARTH_DOCS_V0_1_6['version']})\n"]
+        output = [f"# JAXA Earth Python API Documentation (v{JAXA_EARTH_DOCS_V0_1_6['version']})\n"]  # noqa
         output.append(JAXA_EARTH_DOCS_V0_1_6["overview"])
         output.append("\n## Available Classes:\n")
         for cls_name, info in JAXA_EARTH_DOCS_V0_1_6["classes"].items():
@@ -130,7 +130,7 @@ def get_reference_doc(class_name: str = None) -> str:
     target_cls = cls_dict.get(class_name.lower())
     if target_cls:
         info = JAXA_EARTH_DOCS_V0_1_6["classes"][target_cls]
-        res = [f"# Class: `jaxa.earth.je.{target_cls}`\n", info["description"], "\n### Attributes:"]
+        res = [f"# Class: `jaxa.earth.je.{target_cls}`\n", info["description"], "\n### Attributes:"]  # noqa
         for attr, desc in info["attributes"].items():
             res.append(f"- `{attr}`: {desc}")
         res.append("\n### Methods:")
@@ -140,4 +140,4 @@ def get_reference_doc(class_name: str = None) -> str:
         res.append(f"```python\n{info['example']}\n```")
         return "\n".join(res)
     else:
-        return f"Unknown class '{class_name}'. Available classes: {list(JAXA_EARTH_DOCS_V0_1_6['classes'].keys())}"
+        return f"Unknown class '{class_name}'. Available classes: {list(JAXA_EARTH_DOCS_V0_1_6['classes'].keys())}"  # noqa

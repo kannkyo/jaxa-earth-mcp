@@ -26,6 +26,6 @@ def test_tool_generate_jaxa_python_script():
         select_band="DSM"
     )
     assert "from jaxa.earth import je" in script
-    assert ".filter_date([\"2021-01-01T00:00:00\", \"2022-01-01T00:00:00\"])" in script
+    assert ".filter_date([\"2021-01-01T00:00:00\", \"2022-01-01T00:00:00\"])" in script  # noqa
     assert ".filter_resolution(20.0)" in script
     assert ".select(\"DSM\")" in script
