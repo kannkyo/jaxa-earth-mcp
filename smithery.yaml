@@ -1,0 +1,8 @@
+# Smithery Configuration File
+# See https://smithery.ai/docs/config
+
+startCommand:
+  type: stdio
+  command: uvx
+  args:
+    - jaxa-earth-mcp

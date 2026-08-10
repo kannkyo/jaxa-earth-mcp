@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "jaxa-earth": {
+      "command": "uvx",
+      "args": [
+        "jaxa-earth-mcp"
+      ]
+    }
+  }
+}

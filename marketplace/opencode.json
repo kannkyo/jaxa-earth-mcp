@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/schemas/marketplace.json",
+  "name": "jaxa-earth-mcp",
+  "version": "0.1.0",
+  "description": "MCP server, SKILL, and Python API wrapper for JAXA Earth observation data (jaxa.earth.je v0.1.6).",
+  "author": "JAXA Earth MCP Community",
+  "license": "MIT",
+  "homepage": "https://github.com/kannkyo/jaxa-earth-mcp",
+  "repository": "https://github.com/kannkyo/jaxa-earth-mcp",
+  "mcpServers": {
+    "jaxa-earth": {
+      "command": "uvx",
+      "args": ["jaxa-earth-mcp"],
+      "env": {}
+    }
+  },
+  "skills": [
+    {
+      "name": "jaxa-earth",
+      "path": "skills/jaxa-earth/SKILL.md",
+      "description": "Skill for fetching and processing JAXA satellite Earth observation data (AW3D30, GSMaP, GCOM-C, ALOS-2)."
+    }
+  ]
+}
