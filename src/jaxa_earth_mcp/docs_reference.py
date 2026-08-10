@@ -110,6 +110,7 @@ img = je.ImageProcess(data_out)\\
     ]
 }
 
+
 def get_reference_doc(class_name: str = None) -> str:
     """Return documentation for specified class or full overview."""
     if not class_name or class_name.lower() == "all":
@@ -125,7 +126,7 @@ def get_reference_doc(class_name: str = None) -> str:
             output.append("\nExample:")
             output.append(f"```python\n{info['example']}\n```\n")
         return "\n".join(output)
-    
+
     cls_dict = {k.lower(): k for k in JAXA_EARTH_DOCS_V0_1_6["classes"].keys()}
     target_cls = cls_dict.get(class_name.lower())
     if target_cls:

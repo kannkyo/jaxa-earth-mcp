@@ -5,6 +5,7 @@
 ## 🚀 インストール手順
 
 ### 1. PyPI からのインストール
+
 ```bash
 pip install jaxa-earth-mcp
 # または uv を使用
@@ -12,7 +13,9 @@ uv pip install jaxa-earth-mcp
 ```
 
 ### 2. OpenCode への組み込み
+
 `opencode.json` または `.opencode/plugins.json` に以下を追加します:
+
 ```json
 {
   "mcpServers": {
@@ -25,12 +28,15 @@ uv pip install jaxa-earth-mcp
 ```
 
 ### 3. Claude Code / Plugin インストール
+
 Claude Code のプラグインコマンドで直接インストール可能です:
+
 ```bash
 claude plugin add kannkyo/jaxa-earth-mcp
 ```
 
 また、Claude Desktop の場合 `%APPDATA%\Claude\claude_desktop_config.json` (Windows) または `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) に追加します:
+
 ```json
 {
   "mcpServers": {
@@ -45,4 +51,5 @@ claude plugin add kannkyo/jaxa-earth-mcp
 ```
 
 ### 4. Agent スキルの利用
+
 `skills/jaxa-earth/SKILL.md` をお使いのエージェントスキルディレクトリ（例: `.claude/skills/jaxa-earth/SKILL.md` や `.agents/skills/jaxa-earth/SKILL.md`）にコピーします。

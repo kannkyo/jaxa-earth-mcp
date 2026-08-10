@@ -1,21 +1,22 @@
 """Tests for jaxa_earth_mcp.server tools."""
 
 import json
-from jaxa_earth_mcp.server import (
-    get_api_documentation,
-    list_collections,
-    generate_jaxa_python_script
-)
+
+from jaxa_earth_mcp.server import (generate_jaxa_python_script,
+                                   get_api_documentation, list_collections)
+
 
 def test_tool_get_api_documentation():
     doc = get_api_documentation("ImageCollection")
     assert "ImageCollection" in doc
     assert "filter_date" in doc
 
+
 def test_tool_list_collections():
     res_str = list_collections(keywords=["ALOS"])
     res = json.loads(res_str)
     assert "collections" in res or "data" in res
+
 
 def test_tool_generate_jaxa_python_script():
     script = generate_jaxa_python_script(

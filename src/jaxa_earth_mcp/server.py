@@ -1,31 +1,34 @@
 """MCP Server for JAXA Earth Python API (jaxa.earth.je)."""
 
-from typing import List, Optional, Dict, Any
 import json
+from typing import List, Optional
 
 try:
     from fastmcp import FastMCP
 except ImportError:
     from mcp.server.fastmcp import FastMCP
 
-from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6, get_reference_doc  # noqa
+from jaxa_earth_mcp.docs_reference import JAXA_EARTH_DOCS_V0_1_6  # noqa
+from jaxa_earth_mcp.docs_reference import get_reference_doc
 
 # Initialize FastMCP Server
 mcp = FastMCP("jaxa-earth-mcp")
 
+
 @mcp.tool()
 def get_api_documentation(class_name: str = "all") -> str:
     """Retrieve official documentation and code examples for JAXA Earth Python API (jaxa.earth.je v0.1.6).
-    
+
     Args:
         class_name: Name of the class to get documentation for ('FeatureCollection', 'ImageCollectionList', 'ImageCollection', 'ImageProcess', or 'all').
     """
     return get_reference_doc(class_name)
 
+
 @mcp.tool()
 def list_collections(keywords: Optional[List[str]] = None) -> str:
     """List or filter popular and available satellite datasets on JAXA Earth Platform.
-    
+
     Args:
         keywords: Optional list of keyword strings to filter collections (e.g. ['ALOS', 'LST', 'PRISM']).
     """
@@ -48,13 +51,14 @@ def list_collections(keywords: Optional[List[str]] = None) -> str:
             ]
         else:
             filtered = popular
-        
+
         res = {
             "source": "Curated JAXA Earth Registry (Live API offline or fallback)",  # noqa
             "note": str(e),
             "collections": filtered
         }
         return json.dumps(res, indent=2, ensure_ascii=False)
+
 
 @mcp.tool()
 def generate_jaxa_python_script(
@@ -67,7 +71,7 @@ def generate_jaxa_python_script(
     calc_stats: bool = True
 ) -> str:
     """Generate verified, executable Python script using jaxa.earth.je API to fetch and process satellite data.
-    
+
     Args:
         collection: JAXA Earth collection ID.
         start_date: ISO 8601 start date (YYYY-MM-DDTHH:MM:SS).
@@ -105,15 +109,18 @@ img_proc = img_proc.calc_spatial_stats().show_spatial_stats()
 '''
     return script
 
+
 @mcp.resource("jaxa://docs/api")
 def api_docs_resource() -> str:
     """Resource providing full JAXA Earth Python API v0.1.6 reference."""
     return get_reference_doc("all")
 
+
 @mcp.resource("jaxa://collections/popular")
 def popular_collections_resource() -> str:
     """Resource listing popular JAXA satellite datasets."""
     return json.dumps(JAXA_EARTH_DOCS_V0_1_6["popular_collections"], indent=2)
+
 
 @mcp.prompt()
 def satellite_data_analysis(query: str) -> str:
@@ -128,9 +135,11 @@ Please provide a complete Python solution following the JAXA Earth API (v0.1.6) 
 3. Process raster outputs using `ImageProcess`.
 """
 
+
 def run_server():
     """Run the FastMCP server."""
     mcp.run()
+
 
 if __name__ == "__main__":
     run_server()

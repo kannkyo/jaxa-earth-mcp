@@ -7,9 +7,9 @@
 ## 🌟 主な機能
 
 - **MCP ツール**:
-  - `list_collections`: 利用可能な衛星データセット（AW3D30, GSMaP, GCOM-C, ALOS-2 等）の検索およびフィルタリング。
-  - `get_api_documentation`: API リファレンスとコード例 (`docs.md` v0.1.6) の提供。
-  - `generate_jaxa_python_script`: 正しいメソッド呼び出し順序に準拠した Python スクリプトの自動生成。
+    - `list_collections`: 利用可能な衛星データセット（AW3D30, GSMaP, GCOM-C, ALOS-2 等）の検索およびフィルタリング。
+    - `get_api_documentation`: API リファレンスとコード例 (`docs.md` v0.1.6) の提供。
+    - `generate_jaxa_python_script`: 正しいメソッド呼び出し順序に準拠した Python スクリプトの自動生成。
 - **Agent スキル (SKILL)**: OpenCode、Claude Code、各種 AI エージェント向けに最適化された専用スキル (`skills/jaxa-earth/SKILL.md`)。
 - **マーケットプレイス対応**: OpenCode プラグイン/スキル、Claude Desktop、Smithery AI 等の設定ファイルを同梱。
 - **PyPI パッケージ化**: `pip install jaxa-earth-mcp` で即座に導入可能。
@@ -31,6 +31,7 @@ uv pip install jaxa-earth-mcp jaxa-earth
 ## ⚙️ クイックスタート
 
 ### MCP サーバーの起動 (stdio モード)
+
 ```bash
 jaxa-earth-mcp
 # または uvx 経由
@@ -38,6 +39,7 @@ uvx jaxa-earth-mcp
 ```
 
 ### MCP サーバーの起動 (SSE モード)
+
 ```bash
 jaxa-earth-mcp --transport sse --port 8000
 ```
@@ -47,7 +49,9 @@ jaxa-earth-mcp --transport sse --port 8000
 ## 🔧 クライアント設定
 
 ### OpenCode 設定
+
 `opencode.json` または `.opencode/plugins.json` に追加:
+
 ```json
 {
   "mcpServers": {
@@ -60,11 +64,15 @@ jaxa-earth-mcp --transport sse --port 8000
 ```
 
 ### Claude Code / Plugin でのインストール
+
 リポジトリを指定してプラグインとして追加可能です:
+
 ```bash
 claude plugin add kannkyo/jaxa-earth-mcp
 ```
+
 または `claude_desktop_config.json` に MCP サーバーとして追加:
+
 ```json
 {
   "mcpServers": {
@@ -81,6 +89,7 @@ claude plugin add kannkyo/jaxa-earth-mcp
 ## 🎓 エージェントスキルの組み込み
 
 `skills/jaxa-earth/SKILL.md` を各自の環境にコピーして使用します:
+
 - **Claude Code**: `.claude/skills/jaxa-earth/SKILL.md`
 - **OpenCode / Agent**: `.agents/skills/jaxa-earth/SKILL.md`
 
