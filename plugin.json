@@ -2,7 +2,7 @@
   "name": "jaxa-earth-mcp",
   "version": "0.1.0",
   "description": "JAXA Earth Python API (jaxa.earth.je v0.1.6) MCP サーバーおよび衛星データ解析用スキルプラグイン",
-  "author": "JAXA Earth MCP Community",
+  "author": "kannkyo",
   "homepage": "https://github.com/kannkyo/jaxa-earth-mcp",
   "mcpServers": {
     "jaxa-earth": {

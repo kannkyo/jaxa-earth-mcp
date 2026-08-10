@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = "MIT"
 keywords = ["jaxa", "earth-observation", "satellite", "mcp", "model-context-protocol", "skill", "gis", "stac"]
 authors = [
-    { name = "JAXA Earth MCP Community" }
+    { name = "kannkyo" }
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
